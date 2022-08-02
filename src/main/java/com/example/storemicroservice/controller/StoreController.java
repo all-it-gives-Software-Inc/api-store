@@ -8,11 +8,9 @@ import com.example.storemicroservice.controller.response.Response;
 import com.example.storemicroservice.domain.Store;
 import com.example.storemicroservice.repository.StoreRepository;
 import com.example.storemicroservice.service.StoreService;
-import java.util.List;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,8 +44,15 @@ public class StoreController {
     }
 
     @PostMapping
-    public ResponseEntity<Store> save(@RequestBody @Valid Store store) {
-        return ResponseEntity.ok(storeService.save(store));
+    public ResponseEntity<Response> save(@RequestBody @Valid Store store) {
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(now())
+                        .data(of("StoreService", storeService.save(store)))
+                        .message("Store created")
+                        .status(OK)
+                        .statusCode(OK.value())
+                        .build());
     }
 
     @PutMapping
