@@ -14,7 +14,7 @@ import lombok.Data;
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @NotNull
     @NotEmpty
     @Column(unique = true)
