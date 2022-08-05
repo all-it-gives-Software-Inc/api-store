@@ -21,18 +21,18 @@ public class StoreServiceImpl implements StoreService {
         return storeRepository.findAll(pageable);
     }
     @Override
-    public Store save(Store store) {
+    public Store saveStore(Store store) {
         log.info("Saving new store: {}", store.getName());
         return storeRepository.save(store);
     }
     @Override
-    public void update(Store store) {
+    public void updateStore(Store store) {
         log.info("Updating store: {}", store.getName());
         storeRepository.save(store);
     }
 
     @Override
-    public Boolean delete(Integer id) {
+    public Boolean deleteStore(Long id) {
         log.info("Deleting store: {}", storeRepository.findById(id));
         storeRepository.deleteById(id);
         return Boolean.TRUE;

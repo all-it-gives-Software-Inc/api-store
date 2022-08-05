@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 public interface StoreService {
 
      Page<Store> listAll(Pageable pageable);
-     Store save(Store store);
-     void update(Store store);
-     Boolean delete(Integer id);
+     Store saveStore(Store store);
+     void updateStore(Store store);
+     Boolean deleteStore(Long id);
 }
