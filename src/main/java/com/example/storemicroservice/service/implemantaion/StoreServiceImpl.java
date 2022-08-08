@@ -3,6 +3,7 @@ package com.example.storemicroservice.service.implemantaion;
 import com.example.storemicroservice.domain.Store;
 import com.example.storemicroservice.repository.StoreRepository;
 import com.example.storemicroservice.service.StoreService;
+import com.example.storemicroservice.util.Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class StoreServiceImpl implements StoreService {
+
+    private final Utils utils;
 
     private final StoreRepository storeRepository;
     @Override
@@ -34,7 +37,7 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public Boolean deleteStore(Long id) {
         log.info("Deleting store: {}", storeRepository.findById(id));
-        storeRepository.deleteById(id);
+        storeRepository.delete(utils.findAnimeOrThrowNotFound(id, storeRepository));
         return Boolean.TRUE;
     }
 
