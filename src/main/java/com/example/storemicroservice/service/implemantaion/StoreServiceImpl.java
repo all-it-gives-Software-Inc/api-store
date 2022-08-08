@@ -1,6 +1,7 @@
 package com.example.storemicroservice.service.implemantaion;
 
 import com.example.storemicroservice.domain.Store;
+import com.example.storemicroservice.exception.ResourceNotFoundException;
 import com.example.storemicroservice.repository.StoreRepository;
 import com.example.storemicroservice.service.StoreService;
 import com.example.storemicroservice.util.Utils;
@@ -35,11 +36,10 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public Boolean deleteStore(Long id) {
+    public Boolean deleteStore(Long id) throws ResourceNotFoundException {
         log.info("Deleting store: {}", storeRepository.findById(id));
-        storeRepository.delete(utils.findAnimeOrThrowNotFound(id, storeRepository));
+        storeRepository.delete(utils.findStoreOrThrowNotFound(id, storeRepository));
         return Boolean.TRUE;
     }
-
 
 }

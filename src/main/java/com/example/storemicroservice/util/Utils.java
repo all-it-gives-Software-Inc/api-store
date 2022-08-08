@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class Utils {
 
-    public Store findAnimeOrThrowNotFound(Long id, StoreRepository storeRepository) {
+    public Store findStoreOrThrowNotFound(Long id, StoreRepository storeRepository)
+    throws ResourceNotFoundException {
         return storeRepository
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Store Not Found"));
